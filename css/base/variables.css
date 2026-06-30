@@ -1,6 +1,0 @@
-:root { --font-sans: 'Inter', -apple-system, sans-serif; --bg-frame: #F2EDE8; --bg-site: #FFFAF5; --bg-card: #FFFFFF; --img-grayscale: 0%; --text-main: #1C1C1C; --text-muted: #5C5C5C; --accent: #1A5BB8; --border-color: #D5DDE5; --transition-speed: 0.3s; --transition: all 0.3s ease}
-[data-theme="dark"] { --bg-frame: #0A0A0A; --bg-site: #141414; --bg-card: #1E1E1E; --img-grayscale: 100%; --text-main: #EAEAEA; --text-muted: #AAAAAA; --accent: #6BA3E8; --border-color: #2A2A2A}
-[data-theme="dark"] .theme-icon-dark { display: none}
-[data-theme="dark"] .theme-icon-light { display: inline-block; filter: brightness(0) invert(1) }
-[data-theme="light"] .theme-icon-dark { display: inline-block}
-[data-theme="light"] .theme-icon-light { display: none}
