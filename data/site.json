@@ -64,7 +64,7 @@
             {
          "file":"blog/blog.json",
          "id":"blog",
-         "enabled":true,
+         "enabled":false,
          "nav":{
             "show":false,
             "label":"Blog"
