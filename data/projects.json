@@ -1,0 +1,93 @@
+{
+   "type":"projects",
+   "id":"projects",
+
+
+   "data":{
+      "heading_label":"Some of my projects",
+      "heading":"My Projects",
+      "tagline":"Just some simple things I'm playing around with. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.",
+      "view_all":{
+         "label":"View all projects",
+         "url":"https://example.com/"
+      },
+      "featured":[
+         {
+            "image":"assets/images/projects/featured/featured1.jpg",
+            "alt":"A cozy desk setup with coffee and plants",
+            "status":"Active",
+            "title":"Building the Perfect Cozy Desk Setup",
+            "description":"I'm slowly curating the ultimate work corner — warm lighting, a plant that's still alive, and just enough space for coffee and scribbles.",
+            "url":"https://example.com/",
+            "btn_label":"See Progress"
+         },
+         {
+            "image":"",
+            "alt":"Pouring coffee into a mug",
+            "status":"Ongoing",
+            "title":"Mastering the Perfect Pour Over",
+            "description":"After countless trials, I'm getting closer to the ideal brew. Temperature, grind size, and patience — it's a delicate dance.",
+            "url":"https://example.com/",
+            "btn_label":"Read Brew Log"
+         },
+         {
+            "image":"assets/images/projects/featured/featured2.jpg",
+            "alt":"Searching for the green mug",
+            "status":"Active",
+            "title":"Still looking for my Green mug",
+            "description":"Sorry, still I am looking for my mug! Instead of just staring at me, a help would be very nice! oh no I'm not your mom.",
+            "url":"https://example.com/",
+            "btn_label":"See Progress"
+         },
+         {
+            "image":"",
+            "alt":"Pouring coffee into a mug",
+            "status":"Ongoing",
+            "title":"Mastering the Perfect Pour Over",
+            "description":"After countless trials, I'm getting closer to the ideal brew. Temperature, grind size, and patience — it's a delicate dance.",
+            "url":"https://example.com/",
+            "btn_label":"Read Brew Log"
+         }
+      ],
+
+      
+      "items":[
+         {
+            "image":"assets/images/projects/regular/regular1.jpg",
+            "alt":"A cozy desk setup",
+            "status":"Ongoing",
+            "title":"Looking for My Mug",
+            "description":"Still searching for my favorite green coffee cup. Let me know if you see it.",
+            "url":"https://example.com/",
+            "btn_label":"Details"
+         },
+         {
+            "image":"",
+            "alt":"Clean desk workspace",
+            "status":"Planning",
+            "title":"Cleaning My Desk",
+            "description":"Trying to tidy up my workspace so I have more room for snacks. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. ",
+            "url":"#",
+            "btn_label":"Details"
+         },
+         {
+            "image":"assets/images/projects/regular/regular1.jpg",
+            "alt":"Coffee being poured",
+            "status":"Active",
+            "title":"Trying New Coffee",
+            "description":"Testing out a few different coffee bags from the local market.",
+            "url":"https://example.com/",
+            "btn_label":"Details"
+         },
+         {
+            "image":"",
+            "alt":"Notebook and coffee",
+            "status":"Active",
+            "title":"Unplugging More",
+            "description":"Trying to spend an hour a day without looking at any screens. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. ",
+            "url":"https://example.com/",
+            "btn_label":"Details"
+         }
+      ]
+   }
+}

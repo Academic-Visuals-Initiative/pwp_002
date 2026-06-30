@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(){var t='light';try{t=localStorage.getItem('theme')||'light'}catch(e){}document.documentElement.setAttribute('data-theme',t)})()</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV — Caffeine Overdrive</title>
+<link rel="icon" href="../assets/images/logo.svg" type="image/svg+xml">
+<link rel="alternate icon" href="../assets/images/logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="preload" as="style" onload="this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+<style>
+:root{--bg-main:#FFFAF5;--bg-card:#FFFFFF;--text-main:#1C1C1C;--text-muted:#5C5C5C;--border-color:#D5DDE5;--accent:#1A5BB8;--font-sans:'Inter',sans-serif}
+[data-theme="dark"]{--bg-main:#141414;--bg-card:#1E1E1E;--text-main:#EAEAEA;--text-muted:#AAAAAA;--border-color:#2A2A2A;--accent:#6BA3E8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{margin:10px;font-family:var(--font-sans);background:var(--bg-main);color:var(--text-main);display:flex;justify-content:center;align-items:stretch;height:100dvh;-webkit-font-smoothing:antialiased;transition:background 0.4s,color 0.4s}
+@media(min-width:768px){body{padding:20px}}
+.viewer-card{width:100%;max-width:1100px;background:var(--bg-card);border:1px solid var(--border-color);display:flex;flex-direction:column;flex:1;min-height:0;position:relative}
+.viewer-toolbar{display:flex;justify-content:space-between;align-items:center;padding:10px 15px;background:var(--bg-main);border-bottom:1px solid var(--border-color);gap:8px}
+.toolbar-group{display:flex;align-items:center;gap:8px}
+.btn-custom{background:var(--bg-main);border:1px solid var(--border-color);color:var(--text-muted);padding:8px 12px;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;font-family:var(--font-sans)}
+.btn-custom:hover{background:var(--bg-card);border-color:var(--text-main);color:var(--text-main)}
+.btn-custom:disabled{opacity:0.3;cursor:not-allowed}
+@media(min-width:768px){.btn-custom{padding:8px 16px;font-size:0.8rem}}
+.page-counter{font-size:0.8rem;font-weight:600;color:var(--text-main);white-space:nowrap}
+.page-counter span{color:var(--text-muted);font-weight:400}
+.viewer-workspace{display:flex;flex:1;overflow:hidden;position:relative}
+.viewer-sidebar{width:180px;background:var(--bg-main);border-right:1px solid var(--border-color);overflow-y:auto;padding:15px;display:flex;flex-direction:column;gap:16px;transition:transform 0.3s ease;z-index:100}
+@media(max-width:767px){.viewer-sidebar{display:none!important}}
+.viewer-sidebar.hidden{display:none}
+.thumb-wrapper{cursor:pointer;border:1px solid var(--border-color);background:var(--bg-card);padding:6px;display:flex;flex-direction:column;align-items:center;transition:border-color 0.15s}
+.thumb-wrapper:hover,.thumb-wrapper.active{border-color:var(--accent)}
+.thumb-canvas{display:block;width:100%;height:auto;border:1px solid var(--border-color)}
+.thumb-label{font-size:0.7rem;font-weight:600;color:var(--text-muted);margin-top:6px;text-transform:uppercase;letter-spacing:0.05em;font-family:var(--font-sans)}
+.thumb-wrapper.active .thumb-label{color:var(--text-main)}
+.canvas-container{flex:1;padding:15px;background:var(--bg-main);display:flex;justify-content:center;align-items:flex-start;overflow:auto}
+@media(min-width:768px){.canvas-container{padding:30px}}
+.canvas-shadow{box-shadow:0 10px 30px rgba(0,0,0,0.06);background:#fff;max-width:100%}
+canvas{display:block;max-width:100%;height:auto!important}
+[data-theme="dark"] .canvas-shadow{filter:brightness(0.8) saturate(0.8) hue-rotate(190deg)}
+[data-theme="dark"] .thumb-canvas{filter:brightness(0.8) saturate(0.8) hue-rotate(190deg)}
+#loading-indicator{display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:0.95rem;width:100%;height:100%;font-family:var(--font-sans)}
+@media(max-width:1024px){#zoom-in,#zoom-out{display:none}}
+.theme-btn{background:none;border:none;cursor:pointer;padding:4px;display:flex;align-items:center;flex-shrink:0}
+[data-theme="dark"] .theme-icon-dark{display:none}
+[data-theme="dark"] .theme-icon-light{display:inline-block;filter:brightness(0) invert(1)}
+[data-theme="light"] .theme-icon-dark{display:inline-block}
+[data-theme="light"] .theme-icon-light{display:none}
+</style>
+</head>
+<body>
+<div class="viewer-card">
+    <div class="viewer-toolbar">
+        <div class="toolbar-group">
+            <a href="../" class="btn-custom">Back</a>
+        </div>
+        <div class="toolbar-group">
+            <div class="page-counter"><span id="page-num">0</span> / <span id="page-count">0</span></div>
+        </div>
+        <div class="toolbar-group">
+            <button class="btn-custom" id="zoom-out" disabled>-</button>
+            <button class="btn-custom" id="zoom-in" disabled>+</button>
+            <button class="btn-custom" id="download-btn">Download</button>
+            <button class="theme-btn" data-toggle-theme aria-label="Toggle theme">
+                <img class="theme-icon-dark" src="../assets/icons/system icons/dark_mode.svg" alt="Dark mode" width="20" height="20">
+                <img class="theme-icon-light" src="../assets/icons/system icons/light_mode.svg" alt="Light mode" width="20" height="20">
+            </button>
+        </div>
+    </div>
+    <div class="viewer-workspace">
+        <div class="viewer-sidebar hidden" id="sidebar"></div>
+        <div class="canvas-container" id="canvas-container">
+            <div id="loading-indicator">Loading PDF...</div>
+            <div class="canvas-shadow" id="canvas-wrapper" style="display:none"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+(function(){
+    var theme='light';try{theme=localStorage.getItem('theme')||'light'}catch(e){}
+    document.documentElement.setAttribute('data-theme',theme);
+})();
+function toggleTheme(){var r=document.documentElement,a=r.getAttribute('data-theme')||'light',n=a==='light'?'dark':'light';r.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}}
+document.addEventListener('click',function(e){var t=e.target.closest('[data-toggle-theme]');if(t){e.preventDefault();toggleTheme()}});
+pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+
+var pdfDoc=null,scale=1.1;
+var zoomInBtn=document.getElementById('zoom-in');
+var zoomOutBtn=document.getElementById('zoom-out');
+var pageNumEl=document.getElementById('page-num');
+var pageCountEl=document.getElementById('page-count');
+var loadingIndicator=document.getElementById('loading-indicator');
+var canvasWrapper=document.getElementById('canvas-wrapper');
+var sidebar=document.getElementById('sidebar');
+var canvasContainer=document.getElementById('canvas-container');
+
+function renderAllPages(){
+    canvasWrapper.innerHTML='';
+    pageCountEl.textContent=pdfDoc.numPages;
+    for(var i=1;i<=pdfDoc.numPages;i++){
+        (function(pageNum){
+            pdfDoc.getPage(pageNum).then(function(page){
+                var dpr=window.devicePixelRatio||1;
+                var viewport=page.getViewport({scale:scale});
+                var wrapper=document.createElement('div');
+                wrapper.className='canvas-shadow';
+                wrapper.style.marginBottom='16px';
+                var cvs=document.createElement('canvas');
+                cvs.dataset.page=pageNum;
+                cvs.style.width=viewport.width+'px';
+                cvs.style.height=viewport.height+'px';
+                cvs.height=Math.floor(viewport.height*dpr);
+                cvs.width=Math.floor(viewport.width*dpr);
+                wrapper.appendChild(cvs);
+                canvasWrapper.appendChild(wrapper);
+                page.render({canvasContext:cvs.getContext('2d'),viewport:viewport,transform:[dpr,0,0,dpr,0,0]});
+            });
+        })(i);
+    }
+}
+
+function generateThumbnails(){
+    sidebar.innerHTML='';
+    sidebar.classList.remove('hidden');
+    for(var i=1;i<=pdfDoc.numPages;i++){
+        (function(idx){
+            var thumbWrapper=document.createElement('div');
+            thumbWrapper.className='thumb-wrapper'+(idx===1?' active':'');
+            thumbWrapper.setAttribute('data-page',idx);
+            var thumbCanvas=document.createElement('canvas');
+            thumbCanvas.className='thumb-canvas';
+            var thumbLabel=document.createElement('div');
+            thumbLabel.className='thumb-label';
+            thumbLabel.textContent='Page '+idx;
+            thumbWrapper.appendChild(thumbCanvas);
+            thumbWrapper.appendChild(thumbLabel);
+            sidebar.appendChild(thumbWrapper);
+            pdfDoc.getPage(idx).then(function(page){
+                var dpr=window.devicePixelRatio||1;
+                var viewport=page.getViewport({scale:0.18});
+                var tCtx=thumbCanvas.getContext('2d');
+                thumbCanvas.style.width=viewport.width+'px';
+                thumbCanvas.style.height=viewport.height+'px';
+                thumbCanvas.height=Math.floor(viewport.height*dpr);
+                thumbCanvas.width=Math.floor(viewport.width*dpr);
+                page.render({canvasContext:tCtx,viewport:viewport,transform:[dpr,0,0,dpr,0,0]});
+            });
+            thumbWrapper.addEventListener('click',function(){
+                var target=canvasWrapper.querySelector('canvas[data-page="'+idx+'"]');
+                if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+                document.querySelectorAll('.thumb-wrapper').forEach(function(el){el.classList.remove('active');});
+                thumbWrapper.classList.add('active');
+            });
+        })(i);
+    }
+}
+
+function onZoomIn(){if(!pdfDoc) return; scale*=1.25; renderAllPages();}
+function onZoomOut(){if(!pdfDoc||scale<=0.3) return; scale/=1.25; renderAllPages();}
+
+canvasContainer.addEventListener('scroll',function(){
+    var canvases=canvasWrapper.querySelectorAll('canvas[data-page]');
+    var containerTop=canvasContainer.scrollTop+100;
+    var current=1;
+    canvases.forEach(function(c){
+        var top=c.offsetTop;
+        if(top<=containerTop) current=parseInt(c.dataset.page);
+    });
+    pageNumEl.textContent=current;
+    document.querySelectorAll('.thumb-wrapper').forEach(function(el){
+        el.classList.remove('active');
+        if(parseInt(el.getAttribute('data-page'))===current) el.classList.add('active');
+    });
+});
+
+function loadPDF(source){
+    loadingIndicator.style.display='none';
+    canvasWrapper.style.display='block';
+    pdfjsLib.getDocument(source).promise.then(function(pdfDoc_){
+        pdfDoc=pdfDoc_;
+        zoomInBtn.disabled=false;
+        zoomOutBtn.disabled=false;
+        generateThumbnails();
+        renderAllPages();
+    }).catch(function(err){
+        loadingIndicator.style.display='flex';
+        loadingIndicator.textContent='Could not load PDF. Check that the file exists at: ' + source;
+        console.error('PDF load error:', err);
+    });
+}
+
+zoomInBtn.addEventListener('click',onZoomIn);
+zoomOutBtn.addEventListener('click',onZoomOut);
+document.getElementById('download-btn').addEventListener('click',function(){
+    var a=document.createElement('a');
+    a.href=pdfUrl;
+    a.download='cv.pdf';
+    a.click();
+});
+
+var pdfUrl='../assets/cv.pdf';
+var params=new URLSearchParams(location.search);
+if(params.get('url')) pdfUrl=params.get('url');
+if(typeof pdfjsLib === 'undefined') {
+    document.getElementById('loading-indicator').innerHTML = 'PDF viewer library unavailable. <a href="' + pdfUrl + '" download style="color:var(--accent);">Download PDF instead</a>.';
+} else {
+    loadPDF(pdfUrl);
+}
+</script>
+</body>
+</html>
