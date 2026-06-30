@@ -1,0 +1,57 @@
+{
+   "type":"contact",
+   "id":"contact",
+   "data":{
+      "heading_label":"Contact",
+      "heading":"Drop a Line.",
+      "message":"Whether you want to talk coffee chemistry, swap chocolate tasting notes, or just tell me where my favorite green mug ended up — I'm all ears.",
+      "button":"Send a Message",
+      "email":"hello@caffeineoverdrive.lab",
+      "phone":"+1 (555) BREW-420",
+      "best_time_to_email":"Brew Hours: Mornings, Monday through Friday (ideally before the second espresso wears off)",
+      "department":"Department of Caffeine & Confectionery Studies",
+      "institution":"The Institute of Caffeine Overdrive",
+      "active_hours":{
+         "label":"Brew Hours",
+         "time":"Tuesdays & Thursdays, 10:00 AM - 4:00 PM",
+         "note":"Or whenever the espresso machine is running"
+      },
+      "address":[
+         "The Warm Mug Café",
+         "Second Floor, Window Nook",
+         "42 Roast Lane, Portland, OR 97201"
+      ],
+       "google_icons":{
+          "email":"mail",
+          "best_time_to_email":"calender",
+          "phone":"phone",
+          "department":"building",
+          "active_hours":"clock",
+          "address":"address"
+       },
+      "labels":{
+         "email":"Email Address",
+         "best_time_to_email":"Best time to email",
+         "phone":"Phone",
+         "department":"Department / Institution",
+         "active_hours":"Brew Hours",
+         "address":"Address"
+      },
+       "icons":[
+         {"name":"googlescholar-old","url":"https://scholar.google.com/","label":"Google Scholar"},
+         {"name":"github","url":"https://github.com/","label":"GitHub"},
+         {"name":"orcid","url":"https://orcid.org/","label":"ORCID"}
+       ],
+        "right":{
+          "form":true,
+          "map":"https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d3325746.488175464!2d139.7807984!3d35.5092405!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sjp!4v1782721808836!5m2!1sen!2sjp",
+          "image":"assets/images/contact/contact.jpg",
+          "image_alt":""
+     }
+   },
+   "emailjs":{
+      "service_id":"service_oz6dham",
+      "template_id":"template_642vvza",
+      "public_key":"XvEyqyn9armH2UceH"
+   }
+}
